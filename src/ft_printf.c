@@ -14,22 +14,22 @@
 #include "libft.h"
 
 /*If the syntax is wrong, print it as a character string. */
-int	put_syntax_error(const char *fmt, size_t i)
+int	put_syntax_error(const char *parse_end)
 {
-	int		tmp_i;
+	char	*parse_start;
 	char	*str_err;
 	int		ret_len;
 
-	tmp_i = i;
-	while (fmt[tmp_i] != '%')
-		tmp_i--;
-	str_err = ft_substr(fmt, tmp_i, i - tmp_i + 1);
+	parse_start = (char *)parse_end;
+	while (*parse_start != '%')
+		parse_start--;
+	str_err = ft_substr(parse_start, 0, parse_end - parse_start + 1);
 	ret_len = ft_putstr_cnt(str_err);
 	free(str_err);
 	return (ret_len);
 }
 
-int	switch_conv_function(va_list *ap, t_finfo input, const char *fmt, size_t i)
+int	switch_conv_function(va_list *ap, t_finfo input, const char *parse_end)
 {
 	int	ret_len;
 	int	(*convert_func[END])(va_list*, t_finfo);
@@ -42,7 +42,7 @@ int	switch_conv_function(va_list *ap, t_finfo input, const char *fmt, size_t i)
 	convert_func[XS] = convert_into_hexadecimal;
 	convert_func[XL] = convert_into_hexadecimal;
 	if (input.specifier == NONE)
-		ret_len = put_syntax_error(fmt, i);
+		ret_len = put_syntax_error(parse_end);
 	else if (input.specifier == PER_CT)
 		ret_len = ft_putchar_cnt('%');
 	else
@@ -83,7 +83,7 @@ int	input_format(const char *fmt, va_list *ap)
 			parse_width(fmt, &input, ap, &i);
 			parse_precision(fmt, &input, ap, &i);
 			parse_specifier(fmt, &input, &i);
-			ret_len += switch_conv_function(ap, input, fmt, i);
+			ret_len += switch_conv_function(ap, input, &fmt[i]);
 		}
 		i++;
 	}

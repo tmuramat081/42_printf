@@ -63,8 +63,8 @@ typedef struct s_print {
 int		ft_printf(const char *s, ...);
 t_finfo	init_format_info(void);
 int		input_format(const char *fmt, va_list *ap);
-int		switch_conv_function(va_list *ap, t_finfo input, const char *fmt, size_t i);
-int		put_syntax_error(const char *fmt, size_t i);
+int		switch_conv_function(va_list *ap, t_finfo input, const char *fmt);
+int		put_syntax_error(const char *fmt);
 /**********parcer.c**********/
 int		input_format_info(const char *fmt, va_list *ap, t_finfo *input,
 			 size_t *i);
