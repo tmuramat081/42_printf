@@ -66,9 +66,9 @@ void printf_test2()
 	res = F("%s\n", NULL);
 	printf("res=%d\n", res);
 	fflush(stdout);
-	res = F(NULL);
-	printf("res=%d\n", res);
-	fflush(stdout);
+//	res = F(NULL);
+//	printf("res=%d\n", res);
+//	fflush(stdout);
 	res = F("null:%p\n", NULL);
 	printf("res=%d\n", res);
 	fflush(stdout);
@@ -233,9 +233,6 @@ void 	printf_test7()
 	res = F("%%%");
 	printf("\nres=%d\n", res);
 	fflush(stdout);
-	res = F("%5%");
-	printf("\nres=%d\n", res);
-	fflush(stdout);
 	res = F("%", 0);
 	printf("\nres=%d\n", res);
 	fflush(stdout);
@@ -247,12 +244,6 @@ void 	printf_test7()
 	fflush(stdout);
 	res = F("percent:%%%", 0);
 	printf("\nres=%d\n", res);
-	fflush(stdout);
-	res = F("%y\n", 4200);
-	printf("res=%d\n", res);
-	fflush(stdout);
-	res = F("%10@d\n", 4200);
-	printf("res=%d\n", res);
 	fflush(stdout);
 }
 
@@ -268,9 +259,6 @@ void	printf_test8()
 	printf("res=%d\n", res);
 	fflush(stdout);
 	res = F("%.0d\n", 4200);
-	printf("res=%d\n", res);
-	fflush(stdout);
-	res = F("%.-10d\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
 	res = F("%*.*d\n", 10, 20, 4200000);
@@ -335,14 +323,14 @@ int main (void)
 	fflush(stdout);
 #endif
 
-//	printf_test1();
-//	printf_test2();
-//	printf_test3();
-//	printf_test4();
-//	printf_test5();
-//	printf_test6();
-//	printf_test7();
+	printf_test1();
+	printf_test2();
+	printf_test3();
+	printf_test4();
+	printf_test5();
+	printf_test6();
+	printf_test7();
 	printf_test8();
-//	printf_test9();
+	printf_test9();
 	return (0);
 }	
