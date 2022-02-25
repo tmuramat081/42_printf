@@ -4,5 +4,5 @@ gcc -w test.c libftprintf.a -I./include -D PRINTF -o printf.out
 ./ft_printf.out > A
 ./printf.out > B
 colordiff --text -y A B
-rm A B
+rm A B ./ft_printf.out ./printf.out
 make clean
