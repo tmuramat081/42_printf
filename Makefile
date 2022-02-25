@@ -6,6 +6,8 @@ LIBS = libft.a
 INCS = ./include
 OBJS = ${SRCS:.c=.o}
 
+all: ${NAME}
+
 ${NAME}: ${OBJS}
 	@make -C ./libft
 	@cp libft/libft.a $(NAME)
