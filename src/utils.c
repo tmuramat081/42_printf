@@ -72,7 +72,7 @@ void	str_toupper(char *str)
 }
 
 /* If the augument is null, return 0. */
-ssize_t	ft_strlen_s(const char *c)
+int	ft_strlen_s(const char *c)
 {
 	size_t	cnt;
 

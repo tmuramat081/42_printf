@@ -26,7 +26,9 @@ fclean: clean
 
 re: fclean all
 
+bonus: all
+
 # test:
 #	bash test.sh
 
-.PHONY: all bonus clean fclean re test f p
+.PHONY: all bonus clean fclean re bonus test

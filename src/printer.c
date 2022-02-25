@@ -16,11 +16,9 @@
 void	free_output(t_print *output)
 {
 	free(output->number);
-	output->number = NULL;
 	free(output->sign);
-	output->sign = NULL;
 	free(output->padding);
-	output->padding = NULL;
+	ft_memset(output, 0, sizeof(t_print));
 }
 
 int	print_field(char *str1, char *str2, char *str3)
@@ -47,10 +45,10 @@ int	setup_field(t_print *output, t_finfo input)
 		ret = print_field(output->sign, output->number, output->padding);
 	else
 	{
-		if (input.zero == false)
-			ret = print_field(output->padding, output->sign, output->number);
-		else
+		if (input.zero == true)
 			ret = print_field(output->sign, output->padding, output->number);
+		else
+			ret = print_field(output->padding, output->sign, output->number);
 	}
 	free_output(output);
 	return (ret);

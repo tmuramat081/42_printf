@@ -63,7 +63,8 @@ typedef struct s_print {
 int		ft_printf(const char *s, ...);
 t_finfo	init_format_info(void);
 int		input_format(const char *fmt, va_list *ap);
-int		switch_conv_function(va_list *ap, t_finfo input);
+int		switch_conv_function(va_list *ap, t_finfo input, const char *fmt, size_t i);
+int		put_syntax_error(const char *fmt, size_t i);
 /**********parcer.c**********/
 int		input_format_info(const char *fmt, va_list *ap, t_finfo *input,
 			 size_t *i);
@@ -73,7 +74,7 @@ void	parse_precision(const char *fmt, t_finfo *input, va_list *ap,
 			size_t *i);
 void	parse_specifier(const char *fmt, t_finfo *input, size_t *i);
 /**********converter.c**********/
-int		convert_into_character(va_list *ap, t_finfo input);
+int		convert_and_put_character(va_list *ap, t_finfo input);
 int		convert_into_string(va_list *ap, t_finfo input);
 int		convert_into_decimal(va_list *ap, t_finfo input);
 int		convert_into_address(va_list *ap, t_finfo input);
@@ -85,7 +86,7 @@ void	set_sign(t_print *output, t_finfo input);
 void	set_padding(t_print *output, t_finfo input);
 void	apply_precision(unsigned long long value, t_print *output,
 			t_finfo input);
-char	*add_zero(char *src, size_t len);
+char	*addzero_free(char *src, size_t len);
 /**********printer.c**********/
 void	free_output(t_print *output);
 int		setup_field(t_print *output, t_finfo input);
@@ -95,6 +96,6 @@ char	*ft_itoa_base(unsigned long long value, char *buff, int base);
 int		ft_putstr_cnt(char *str);
 int		ft_putchar_cnt(int c);
 void	str_toupper(char *str);
-ssize_t	ft_strlen_s(const char *s);
+int		ft_strlen_s(const char *s);
 
 #endif

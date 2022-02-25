@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-char	*add_zero(char *src, size_t len)
+char	*addzero_free(char *src, size_t len)
 {
 	char	*buff;
 	char	*dst;
@@ -32,7 +32,7 @@ char	*add_zero(char *src, size_t len)
 void	apply_precision(unsigned long long value,
 			t_print *output, t_finfo input)
 {
-	ssize_t	number_len;
+	ssize_t	n_len;
 
 	if (input.precision == 0 && value == 0)
 	{
@@ -40,10 +40,10 @@ void	apply_precision(unsigned long long value,
 		output->number = NULL;
 		return ;
 	}
-	number_len = ft_strlen_s(output->number);
-	if (number_len < input.precision)
+	n_len = ft_strlen_s(output->number);
+	if (n_len < input.precision)
 	{
-		output->number = add_zero(output->number, input.precision - number_len);
+		output->number = addzero_free(output->number, input.precision - n_len);
 		if (!output->number)
 		{
 			output->status = ERROR;
@@ -89,13 +89,13 @@ void	set_sign(t_print *output, t_finfo input)
 		else
 			output->sign = ft_strdup("0x");
 	}
-	if (output->status == NEGATIVE)
+	else if (output->status == NEGATIVE)
 		output->sign = ft_strdup("-");
 	else if (output->status == POSITIVE)
 	{
 		if (input.plus == true)
 			output->sign = ft_strdup("+");
-		else if (input.space == true)
+		else if (input.space == true && input.specifier != U)
 			output->sign = ft_strdup(" ");
 	}
 }

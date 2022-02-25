@@ -291,9 +291,12 @@ void	printf_test8()
 	res = F("%d\n", 1844674407370955160);
 	printf("res=%d\n", res);
 	fflush(stdout);
-	res = F(NULL);
+	res = F("% u\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
+	res = F("%*d\n", -10, 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);	
 }
 
 void	printf_test9()
@@ -318,6 +321,7 @@ void	printf_test9()
 	res = F("%.-10d\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
+
 }
 
 int main (void)
@@ -338,7 +342,7 @@ int main (void)
 //	printf_test5();
 //	printf_test6();
 //	printf_test7();
-//	printf_test8();
-	printf_test9();
+	printf_test8();
+//	printf_test9();
 	return (0);
 }	

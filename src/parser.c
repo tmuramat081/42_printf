@@ -55,7 +55,7 @@ void	parse_precision(const char *fmt, t_finfo *input, va_list *ap, size_t *i)
 			(*i)++;
 	}
 	if (input_num < 0)
-		input_num = 0;
+		input_num = -1;
 	input->precision = input_num;
 	input->zero = false;
 }
@@ -77,6 +77,11 @@ void	parse_width(const char *fmt, t_finfo *input, va_list *ap, size_t *i)
 	}
 	else
 		return ;
+	if (input_num < 0)
+	{
+		input->hyphen = true;
+		input_num = -input_num;
+	}
 	input->width = input_num;
 }
 

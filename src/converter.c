@@ -6,14 +6,14 @@
 /*   By: tmuramat <tmuramat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 22:41:42 by tmuramat          #+#    #+#             */
-/*   Updated: 2022/02/25 14:08:08 by tmuramat         ###   ########.fr       */
+/*   Updated: 2022/02/25 20:45:12 by tmuramat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	convert_into_character(va_list *ap, t_finfo input)
+int	convert_and_put_character(va_list *ap, t_finfo input)
 {
 	unsigned char	input_c;
 	size_t			padding_len;
@@ -52,7 +52,7 @@ int	convert_into_string(va_list *ap, t_finfo input)
 	else
 		output.number = ft_strdup(input_str);
 	if (input.precision != EMPTY
-		&& input.precision < (ssize_t) ft_strlen_s(output.number))
+		&& input.precision < ft_strlen_s(output.number))
 		output.number[input.precision] = '\0';
 	set_padding(&output, input);
 	return (setup_field(&output, input));
