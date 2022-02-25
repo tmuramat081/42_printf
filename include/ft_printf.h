@@ -74,7 +74,7 @@ void	parse_precision(const char *fmt, t_finfo *input, va_list *ap,
 			size_t *i);
 void	parse_specifier(const char *fmt, t_finfo *input, size_t *i);
 /**********converter.c**********/
-int		convert_and_put_character(va_list *ap, t_finfo input);
+int		convert_into_char_and_print(va_list *ap, t_finfo input);
 int		convert_into_string(va_list *ap, t_finfo input);
 int		convert_into_decimal(va_list *ap, t_finfo input);
 int		convert_into_address(va_list *ap, t_finfo input);

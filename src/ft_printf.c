@@ -34,7 +34,7 @@ int	switch_conv_function(va_list *ap, t_finfo input, const char *parse_end)
 	int	ret_len;
 	int	(*convert_func[END])(va_list*, t_finfo);
 
-	convert_func[C] = convert_and_put_character;
+	convert_func[C] = convert_into_char_and_print;
 	convert_func[S] = convert_into_string;
 	convert_func[DI] = convert_into_decimal;
 	convert_func[U] = convert_into_decimal;

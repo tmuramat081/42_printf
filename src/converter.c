@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   converter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmuramat <tmuramat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmuramat <mt15hydrangea@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 22:41:42 by tmuramat          #+#    #+#             */
-/*   Updated: 2022/02/25 20:45:12 by tmuramat         ###   ########.fr       */
+/*   Updated: 2022/02/25 23:30:14 by tmuramat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	convert_and_put_character(va_list *ap, t_finfo input)
+int	convert_into_char_and_print(va_list *ap, t_finfo input)
 {
 	unsigned char	input_c;
 	size_t			padding_len;
