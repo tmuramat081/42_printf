@@ -1,7 +1,7 @@
 NAME = libftprintf.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-SRCS = ./src/ft_printf.c ./src/parser.c ./src/converter.c ./src/composer.c ./src/printer.c ./src/utils.c
+SRCS = ./src/ft_printf.c ./src/doprintf.c ./src/parser.c ./src/converter.c ./src/composer.c ./src/printer.c ./src/utils.c
 LIBS = libft.a
 INCS = ./include
 OBJS = ${SRCS:.c=.o}
@@ -27,8 +27,5 @@ fclean: clean
 re: fclean all
 
 bonus: all
-
-# test:
-#	bash test.sh
 
 .PHONY: all bonus clean fclean re bonus test

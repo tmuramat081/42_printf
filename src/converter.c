@@ -6,7 +6,7 @@
 /*   By: tmuramat <mt15hydrangea@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 22:41:42 by tmuramat          #+#    #+#             */
-/*   Updated: 2022/02/25 23:30:14 by tmuramat         ###   ########.fr       */
+/*   Updated: 2022/02/26 20:14:00 by tmuramat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ int	convert_into_string(va_list *ap, t_finfo input)
 	ft_memset(&output, 0, sizeof(t_print));
 	input_str = va_arg(*ap, char *);
 	if (!input_str)
-		output.number = ft_strdup ("(null)");
+		output.body = ft_strdup ("(null)");
 	else
-		output.number = ft_strdup(input_str);
+		output.body = ft_strdup(input_str);
 	if (input.precision != EMPTY
-		&& input.precision < ft_strlen_s(output.number))
-		output.number[input.precision] = '\0';
+		&& input.precision < ft_strlen_s(output.body))
+		output.body[input.precision] = '\0';
 	set_padding(&output, input);
 	return (setup_field(&output, input));
 }
@@ -72,8 +72,8 @@ int	convert_into_decimal(va_list *ap, t_finfo input)
 		if (0 > (signed long long)value)
 			output.status = NEGATIVE;
 	}
-	set_number(value, 10, &output, input);
-	set_sign(&output, input);
+	set_body(value, 10, &output, input);
+	set_prefix(&output, input);
 	set_padding(&output, input);
 	return (setup_field(&output, input));
 }
@@ -86,11 +86,11 @@ int	convert_into_address(va_list *ap, t_finfo input)
 	ft_memset(&output, 0, sizeof(t_print));
 	value = va_arg(*ap, uintptr_t);
 	if (!value)
-		output.number = ft_strdup("0x0");
+		output.body = ft_strdup("0x0");
 	else
 	{
-		set_number(value, 16, &output, input);
-		set_sign(&output, input);
+		set_body(value, 16, &output, input);
+		set_prefix(&output, input);
 	}
 	set_padding(&output, input);
 	return (setup_field(&output, input));
@@ -103,11 +103,11 @@ int	convert_into_hexadecimal(va_list *ap, t_finfo input)
 
 	ft_memset(&output, 0, sizeof(t_print));
 	value = va_arg(*ap, unsigned int);
-	set_number(value, 16, &output, input);
+	set_body(value, 16, &output, input);
 	if (input.specifier == XL)
-		str_toupper(output.number);
+		str_toupper(output.body);
 	if (value)
-		set_sign(&output, input);
+		set_prefix(&output, input);
 	set_padding(&output, input);
 	return (setup_field(&output, input));
 }

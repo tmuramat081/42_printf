@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-char	*addzero_free(char *src, size_t len)
+char	*zerojoin_free(char *src, size_t len)
 {
 	char	*buff;
 	char	*dst;
@@ -32,19 +32,19 @@ char	*addzero_free(char *src, size_t len)
 void	apply_precision(unsigned long long value,
 			t_print *output, t_finfo input)
 {
-	ssize_t	n_len;
+	size_t	b_len;
 
 	if (input.precision == 0 && value == 0)
 	{
-		free(output->number);
-		output->number = NULL;
+		free(output->body);
+		output->body = NULL;
 		return ;
 	}
-	n_len = ft_strlen_s(output->number);
-	if (n_len < input.precision)
+	b_len = ft_strlen_s(output->body);
+	if (b_len < (size_t)input.precision)
 	{
-		output->number = addzero_free(output->number, input.precision - n_len);
-		if (!output->number)
+		output->body = zerojoin_free(output->body, input.precision - b_len);
+		if (!output->body)
 		{
 			output->status = ERROR;
 			return ;
@@ -55,15 +55,15 @@ void	apply_precision(unsigned long long value,
 /* Make the 'padding' part, which is provived by field width(space or 0). */
 void	set_padding(t_print *output, t_finfo input)
 {
-	int		number_len;
-	int		sign_len;
+	int		body_len;
+	int		prefix_len;
 	int		padding_len;
 
 	if (input.width == EMPTY || input.width == 0)
 		return ;
-	number_len = ft_strlen_s(output->number);
-	sign_len = ft_strlen_s(output->sign);
-	padding_len = input.width - number_len - sign_len;
+	body_len = ft_strlen_s(output->body);
+	prefix_len = ft_strlen_s(output->prefix);
+	padding_len = input.width - body_len - prefix_len;
 	if (0 < padding_len)
 	{
 		output->padding = calloc(padding_len + 1, sizeof(char));
@@ -79,38 +79,38 @@ void	set_padding(t_print *output, t_finfo input)
 	}
 }
 
-/* Make the 'sign' part, which conteins signs(+, -, 0x, etc.). */
-void	set_sign(t_print *output, t_finfo input)
+/* Make the 'prefix' part, which conteins +, -, 0x, etc... */
+void	set_prefix(t_print *output, t_finfo input)
 {
 	if (input.specifier == P || input.sharp == true)
 	{
 		if (input.specifier == XL)
-			output->sign = ft_strdup("0X");
+			output->prefix = ft_strdup("0X");
 		else
-			output->sign = ft_strdup("0x");
+			output->prefix = ft_strdup("0x");
 	}
 	else if (output->status == NEGATIVE)
-		output->sign = ft_strdup("-");
+		output->prefix = ft_strdup("-");
 	else if (output->status == POSITIVE)
 	{
 		if (input.plus == true)
-			output->sign = ft_strdup("+");
-		else if (input.space == true && input.specifier != U)
-			output->sign = ft_strdup(" ");
+			output->prefix = ft_strdup("+");
+		else if (input.space == true && input.specifier == DI)
+			output->prefix = ft_strdup(" ");
 	}
 }
 
-/* Make the 'number' part, which is actual numbers. */
-void	set_number(unsigned long long value, int base,
+/* Make the 'body' part, which is actual number or string. */
+void	set_body(unsigned long long value, int base,
 			t_print *output, t_finfo input)
 {
-	output->number = malloc((sizeof (char) * 16 + 1));
-	if (!output->number)
+	output->body = malloc((sizeof (char) * 16 + 1));
+	if (!output->body)
 	{
 		output->status = ERROR;
 		return ;
 	}
-	ft_itoa_base(value, output->number, base);
+	ft_itoa_base(value, output->body, base);
 	if (input.precision != EMPTY)
 		apply_precision(value, output, input);
 }

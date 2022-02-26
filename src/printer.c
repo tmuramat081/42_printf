@@ -15,8 +15,8 @@
 
 void	free_output(t_print *output)
 {
-	free(output->number);
-	free(output->sign);
+	free(output->body);
+	free(output->prefix);
 	free(output->padding);
 	ft_memset(output, 0, sizeof(t_print));
 }
@@ -42,13 +42,13 @@ int	setup_field(t_print *output, t_finfo input)
 		return (-1);
 	}
 	if (input.hyphen == true)
-		ret = print_field(output->sign, output->number, output->padding);
+		ret = print_field(output->prefix, output->body, output->padding);
 	else
 	{
 		if (input.zero == true)
-			ret = print_field(output->sign, output->padding, output->number);
+			ret = print_field(output->prefix, output->padding, output->body);
 		else
-			ret = print_field(output->padding, output->sign, output->number);
+			ret = print_field(output->padding, output->prefix, output->body);
 	}
 	free_output(output);
 	return (ret);

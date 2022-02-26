@@ -51,23 +51,22 @@ typedef struct s_finfo {
 	t_spec	specifier;
 }	t_finfo;
 
-/* For example ' -42',  1. number '42',  2. sign '-', 3. padding ' '  */
+/* For example ' -42',  1. body '42',  2. prefix '-', 3. padding ' '  */
 typedef struct s_print {
-	char	*number;
-	char	*sign;
+	char	*body;
+	char	*prefix;
 	char	*padding;
 	int		status;
 }	t_print;
 
-/**********ft_print.c**********/
+/**********ft_printf.c**********/
 int		ft_printf(const char *s, ...);
-t_finfo	init_format_info(void);
-int		input_format(const char *fmt, va_list *ap);
+/**********doprintf.c**********/
+int		ft_doprintf(const char *fmt, va_list *ap);
+int		print_arguments(const char *fmt, va_list *ap, size_t *i);
 int		switch_conv_function(va_list *ap, t_finfo input, const char *fmt);
 int		put_syntax_error(const char *fmt);
 /**********parcer.c**********/
-int		input_format_info(const char *fmt, va_list *ap, t_finfo *input,
-			 size_t *i);
 void	parse_flags(const char *fmt, t_finfo *input, size_t *i);
 void	parse_width(const char *fmt, t_finfo *input, va_list *ap, size_t *i);
 void	parse_precision(const char *fmt, t_finfo *input, va_list *ap,
@@ -80,13 +79,13 @@ int		convert_into_decimal(va_list *ap, t_finfo input);
 int		convert_into_address(va_list *ap, t_finfo input);
 int		convert_into_hexadecimal(va_list *ap, t_finfo input);
 /**********composer.c**********/
-void	set_number(unsigned long long value, int base, t_print *output,
+void	set_body(unsigned long long value, int base, t_print *output,
 			t_finfo input);
-void	set_sign(t_print *output, t_finfo input);
+void	set_prefix(t_print *output, t_finfo input);
 void	set_padding(t_print *output, t_finfo input);
 void	apply_precision(unsigned long long value, t_print *output,
 			t_finfo input);
-char	*addzero_free(char *src, size_t len);
+char	*zerojoin_free(char *src, size_t len);
 /**********printer.c**********/
 void	free_output(t_print *output);
 int		setup_field(t_print *output, t_finfo input);
