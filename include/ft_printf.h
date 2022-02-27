@@ -22,22 +22,22 @@
 
 # define EMPTY -1
 
-# define POSITIVE 0
-# define NEGATIVE 1
-# define ERROR 2
+# define ST_POSITIVE 0
+# define ST_NEGATIVE 1
+# define ST_ERROR 2
 
 /* Support for cspdiuxX. */
 typedef enum e_spec {
-	C,
-	S,
-	DI,
-	U,
-	P,
-	XS,
-	XL,
+	SP_C,
+	SP_S,
+	SP_DI,
+	SP_U,
+	SP_P,
+	SP_XS,
+	SP_XL,
 	PER_CT,
-	NONE,
-	END
+	SP_NONE,
+	E_END
 }	t_spec;
 
 typedef struct s_finfo {
@@ -59,7 +59,7 @@ typedef struct s_print {
 	int		status;
 }	t_print;
 
-typedef int(*t_pfunc[END])(va_list *, t_finfo);
+typedef int(*t_parrfunc[E_END])(va_list *, t_finfo);
 
 /**********ft_printf.c**********/
 int		ft_printf(const char *s, ...);

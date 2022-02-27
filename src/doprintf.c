@@ -13,7 +13,8 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-const t_pfunc	g_convert_func =
+/* c, s, d, i, u, x, X */
+const t_parrfunc	g_convert_func =
 {
 	convert_into_char_and_print,
 	convert_into_string,
@@ -44,7 +45,7 @@ int	switch_conv_function(va_list *ap, t_finfo input, const char *parse_end)
 {
 	int	ret_len;
 
-	if (input.specifier == NONE)
+	if (input.specifier == SP_NONE)
 		ret_len = put_syntax_error(parse_end);
 	else if (input.specifier == PER_CT)
 		ret_len = ft_putchar_cnt('%');

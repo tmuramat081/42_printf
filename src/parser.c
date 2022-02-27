@@ -16,23 +16,23 @@
 void	parse_specifier(const char *fmt, t_finfo *input, size_t *i)
 {
 	if (fmt[*i] == 'c')
-		input->specifier = C;
+		input->specifier = SP_C;
 	else if (fmt[*i] == 's')
-		input->specifier = S;
+		input->specifier = SP_S;
 	else if (fmt[*i] == 'd' || fmt[*i] == 'i')
-		input->specifier = DI;
+		input->specifier = SP_DI;
 	else if (fmt[*i] == 'u')
-		input->specifier = U;
+		input->specifier = SP_U;
 	else if (fmt[*i] == 'p')
-		input->specifier = P;
+		input->specifier = SP_P;
 	else if (fmt[*i] == 'x')
-		input->specifier = XS;
+		input->specifier = SP_XS;
 	else if (fmt[*i] == 'X')
-		input->specifier = XL;
+		input->specifier = SP_XL;
 	else if (fmt[*i] == '%')
 		input->specifier = PER_CT;
 	else
-		input->specifier = NONE;
+		input->specifier = SP_NONE;
 }
 
 /* Notion: if the precision is set, the zero flag will be disabled. */

@@ -309,7 +309,28 @@ void	printf_test9()
 	res = F("%.-10d\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
+}
 
+void	printf_test10()
+{
+	int res;
+
+	puts("---test10(review fix)---");
+	res = F("%.*d\n", -10, 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);
+	res = F("%+u\n", 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);
+	res = F("% +x\n", 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);
+	res = F("%+x\n", 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);
+	res = F("%+p\n", 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);
 }
 
 int main (void)
@@ -332,5 +353,6 @@ int main (void)
 	printf_test7();
 	printf_test8();
 	printf_test9();
+	printf_test10();
 	return (0);
 }	

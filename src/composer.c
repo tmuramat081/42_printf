@@ -46,7 +46,7 @@ void	apply_precision(unsigned long long value,
 		output->body = zerojoin_free(output->body, input.precision - b_len);
 		if (!output->body)
 		{
-			output->status = ERROR;
+			output->status = ST_ERROR;
 			return ;
 		}
 	}
@@ -69,7 +69,7 @@ void	set_padding(t_print *output, t_finfo input)
 		output->padding = calloc(padding_len + 1, sizeof(char));
 		if (!output->padding)
 		{
-			output->status = ERROR;
+			output->status = ST_ERROR;
 			return ;
 		}
 		if (input.zero == true)
@@ -82,20 +82,20 @@ void	set_padding(t_print *output, t_finfo input)
 /* Make the 'prefix' part, which conteins +, -, 0x, etc... */
 void	set_prefix(t_print *output, t_finfo input)
 {
-	if (input.specifier == P || input.sharp == true)
+	if (input.specifier == SP_P || input.sharp == true)
 	{
-		if (input.specifier == XL)
+		if (input.specifier == SP_XL)
 			output->prefix = ft_strdup("0X");
 		else
 			output->prefix = ft_strdup("0x");
 	}
-	else if (output->status == NEGATIVE)
+	else if (output->status == ST_NEGATIVE)
 		output->prefix = ft_strdup("-");
-	else if (output->status == POSITIVE)
+	else if (output->status == ST_POSITIVE)
 	{
-		if (input.plus == true)
+		if (input.plus == true && input.specifier == SP_DI)
 			output->prefix = ft_strdup("+");
-		else if (input.space == true && input.specifier == DI)
+		else if (input.space == true && input.specifier == SP_DI)
 			output->prefix = ft_strdup(" ");
 	}
 }
@@ -107,7 +107,7 @@ void	set_body(unsigned long long value, int base,
 	output->body = malloc((sizeof (char) * 16 + 1));
 	if (!output->body)
 	{
-		output->status = ERROR;
+		output->status = ST_ERROR;
 		return ;
 	}
 	ft_itoa_base(value, output->body, base);

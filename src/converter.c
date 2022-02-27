@@ -6,7 +6,7 @@
 /*   By: tmuramat <mt15hydrangea@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 22:41:42 by tmuramat          #+#    #+#             */
-/*   Updated: 2022/02/26 20:14:00 by tmuramat         ###   ########.fr       */
+/*   Updated: 2022/02/27 21:32:18 by tmuramat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	convert_into_decimal(va_list *ap, t_finfo input)
 	unsigned long long	value;
 
 	ft_memset(&output, 0, sizeof(t_print));
-	if (input.specifier == U)
+	if (input.specifier == SP_U)
 		value = va_arg(*ap, unsigned int);
 	else
 	{
 		value = va_arg(*ap, int);
 		if (0 > (signed long long)value)
-			output.status = NEGATIVE;
+			output.status = ST_NEGATIVE;
 	}
 	set_body(value, 10, &output, input);
 	set_prefix(&output, input);
@@ -104,7 +104,7 @@ int	convert_into_hexadecimal(va_list *ap, t_finfo input)
 	ft_memset(&output, 0, sizeof(t_print));
 	value = va_arg(*ap, unsigned int);
 	set_body(value, 16, &output, input);
-	if (input.specifier == XL)
+	if (input.specifier == SP_XL)
 		str_toupper(output.body);
 	if (value)
 		set_prefix(&output, input);

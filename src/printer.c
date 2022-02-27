@@ -36,20 +36,17 @@ int	setup_field(t_print *output, t_finfo input)
 {
 	int	ret;
 
-	if (output->status == ERROR)
+	if (output->status == ST_ERROR)
 	{
 		free_output(output);
 		return (-1);
 	}
 	if (input.hyphen == true)
 		ret = print_field(output->prefix, output->body, output->padding);
+	else if (input.zero == true)
+		ret = print_field(output->prefix, output->padding, output->body);
 	else
-	{
-		if (input.zero == true)
-			ret = print_field(output->prefix, output->padding, output->body);
-		else
-			ret = print_field(output->padding, output->prefix, output->body);
-	}
+		ret = print_field(output->padding, output->prefix, output->body);
 	free_output(output);
 	return (ret);
 }
