@@ -55,9 +55,10 @@ void	parse_precision(const char *fmt, t_finfo *input, va_list *ap, size_t *i)
 			(*i)++;
 	}
 	if (input_num < 0)
-		input_num = -1;
+		input_num = EMPTY;
+	else
+		input->zero = false;
 	input->precision = input_num;
-	input->zero = false;
 }
 
 void	parse_width(const char *fmt, t_finfo *input, va_list *ap, size_t *i)

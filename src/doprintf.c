@@ -13,6 +13,17 @@
 #include "ft_printf.h"
 #include "libft.h"
 
+const t_pfunc	g_convert_func =
+{
+	convert_into_char_and_print,
+	convert_into_string,
+	convert_into_decimal,
+	convert_into_decimal,
+	convert_into_address,
+	convert_into_hexadecimal,
+	convert_into_hexadecimal
+};
+
 /*If the syntax is wrong, print it as a character string. */
 int	put_syntax_error(const char *parse_end)
 {
@@ -32,21 +43,13 @@ int	put_syntax_error(const char *parse_end)
 int	switch_conv_function(va_list *ap, t_finfo input, const char *parse_end)
 {
 	int	ret_len;
-	int	(*convert_func[END])(va_list*, t_finfo);
 
-	convert_func[C] = convert_into_char_and_print;
-	convert_func[S] = convert_into_string;
-	convert_func[DI] = convert_into_decimal;
-	convert_func[U] = convert_into_decimal;
-	convert_func[P] = convert_into_address;
-	convert_func[XS] = convert_into_hexadecimal;
-	convert_func[XL] = convert_into_hexadecimal;
 	if (input.specifier == NONE)
 		ret_len = put_syntax_error(parse_end);
 	else if (input.specifier == PER_CT)
 		ret_len = ft_putchar_cnt('%');
 	else
-		ret_len = convert_func[input.specifier](ap, input);
+		ret_len = g_convert_func[input.specifier](ap, input);
 	return (ret_len);
 }
 
@@ -82,7 +85,6 @@ int	ft_doprintf(const char *fmt, va_list *ap)
 	int		ret_len;
 
 	i = 0;
-	ret = 0;
 	ret_len = 0;
 	while (fmt[i] != '\0')
 	{

@@ -28,7 +28,6 @@
 
 /* Support for cspdiuxX. */
 typedef enum e_spec {
-	NONE,
 	C,
 	S,
 	DI,
@@ -37,6 +36,7 @@ typedef enum e_spec {
 	XS,
 	XL,
 	PER_CT,
+	NONE,
 	END
 }	t_spec;
 
@@ -58,6 +58,8 @@ typedef struct s_print {
 	char	*padding;
 	int		status;
 }	t_print;
+
+typedef int(*t_pfunc[END])(va_list *, t_finfo);
 
 /**********ft_printf.c**********/
 int		ft_printf(const char *s, ...);

@@ -18,7 +18,7 @@ char	*zerojoin_free(char *src, size_t len)
 	char	*buff;
 	char	*dst;
 
-	buff = calloc(len + 1, sizeof(char));
+	buff = ft_calloc(len + 1, sizeof(char));
 	if (!buff)
 		return (NULL);
 	ft_memset(buff, '0', len);
