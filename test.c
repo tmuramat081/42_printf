@@ -19,6 +19,7 @@ void printf_test1()
 	num = 1234;
 	addr = 0x4242424242424;
 	F("---test1(regular)---\n");
+	fflush(stdout);
 	res = F("character:%c\n", 'A');
 	printf("res=%d\n", res);
 	fflush(stdout);
@@ -57,6 +58,7 @@ void printf_test2()
 	
 	num = -1234;
 	F("---test2(irregular)---\n");
+	fflush(stdout);
 	res = F("no chara:%c\n", 0);
 	printf("res=%d\n", res);
 	fflush(stdout);
@@ -92,6 +94,7 @@ void printf_test3()
 
 	num = -42;
 	F("---test3(field width)---\n");
+	fflush(stdout);
 	res = F("[%15c]\n", 'c');
 	printf("res=%d\n", res);
 	fflush(stdout);
@@ -118,6 +121,7 @@ void printf_test4()
 	
 	num = 42;
 	F("---test4(precision)---\n");
+	fflush(stdout);
 	res = F("[%.3s]\n", "abcde");
 	printf("res=%d\n", res);
 	fflush(stdout);
@@ -148,6 +152,7 @@ void printf_test5()
 	
 	num = -1234;
 	F("---test5(flag sharp/plus/spase/minus/zero)---\n");
+	fflush(stdout);
 	res = F("sharp+x:%#x\n", num);
 	res = F("sharp+X:%#X\n", -num);
 	res = F("sharp+X:%#X\n", 0);
@@ -169,6 +174,7 @@ void printf_test6()
 	
 	num = -1234;
 	F("---test6(corner case)---\n");
+	fflush(stdout);
 	res = F("%%013X\n", ULONG_MAX);
 	printf("res=%d\n", res);
 	fflush(stdout);
@@ -224,6 +230,7 @@ void 	printf_test7()
 	int res;
 
 	F("---test7(wrong syntax)---\n");
+	fflush(stdout);
 	res = F("%");
 	printf("\nres=%d\n", res);
 	fflush(stdout);
@@ -254,7 +261,7 @@ void	printf_test8()
 	
 	num = -1234;
 	F("---test8(lunatic case)---\n");
-
+	fflush(stdout);
 	res = F("%0+10d\n", 4200);
 	printf("res=%d\n", res);
 	fflush(stdout);
@@ -294,6 +301,7 @@ void	printf_test9()
 	
 	num = -1234;
 	F("---test9(bug fix)---\n");
+	fflush(stdout);
 	res = F("%5%");
 	printf("\nres=%d\n", res);
 	fflush(stdout);
@@ -309,6 +317,9 @@ void	printf_test9()
 	res = F("%.-10d\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
+	res = F("%0.*d\n", -10, 42);
+	printf("res=%d\n", res);
+	fflush(stdout);
 }
 
 void	printf_test10()
@@ -316,8 +327,6 @@ void	printf_test10()
 	int res;
 
 	puts("---test10(review fix)---");
-	res = F("%.*d\n", -10, 1234);
-	printf("res=%d\n", res);
 	fflush(stdout);
 	res = F("%+u\n", 1234);
 	printf("res=%d\n", res);
@@ -325,10 +334,16 @@ void	printf_test10()
 	res = F("% +x\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
+	res = F("% u\n", 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);
 	res = F("%+x\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
 	res = F("%+p\n", 1234);
+	printf("res=%d\n", res);
+	fflush(stdout);
+	res = F("%+u\n", 1234);
 	printf("res=%d\n", res);
 	fflush(stdout);
 }
@@ -344,14 +359,14 @@ int main (void)
 	fflush(stdout);
 #endif
 
-	printf_test1();
-	printf_test2();
-	printf_test3();
-	printf_test4();
-	printf_test5();
-	printf_test6();
-	printf_test7();
-	printf_test8();
+//	printf_test1();
+//	printf_test2();
+//	printf_test3();
+//	printf_test4();
+//	printf_test5();
+//	printf_test6();
+//	printf_test7();
+//	printf_test8();
 	printf_test9();
 	printf_test10();
 	return (0);
