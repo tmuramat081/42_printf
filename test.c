@@ -359,14 +359,14 @@ int main (void)
 	fflush(stdout);
 #endif
 
-//	printf_test1();
-//	printf_test2();
-//	printf_test3();
-//	printf_test4();
-//	printf_test5();
-//	printf_test6();
-//	printf_test7();
-//	printf_test8();
+	printf_test1();
+	printf_test2();
+	printf_test3();
+	printf_test4();
+	printf_test5();
+	printf_test6();
+	printf_test7();
+	printf_test8();
 	printf_test9();
 	printf_test10();
 	return (0);

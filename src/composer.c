@@ -66,7 +66,7 @@ void	set_padding(t_print *output, t_finfo input)
 	padding_len = input.width - body_len - prefix_len;
 	if (0 < padding_len)
 	{
-		output->padding = calloc(padding_len + 1, sizeof(char));
+		output->padding = ft_calloc(padding_len + 1, sizeof(char));
 		if (!output->padding)
 		{
 			output->status = ST_ERROR;
@@ -91,11 +91,11 @@ void	set_prefix(t_print *output, t_finfo input)
 	}
 	else if (output->status == ST_NEGATIVE)
 		output->prefix = ft_strdup("-");
-	else if (output->status == ST_POSITIVE)
+	else if (output->status == ST_POSITIVE && input.specifier == SP_DI)
 	{
-		if (input.plus == true && input.specifier == SP_DI)
+		if (input.plus == true)
 			output->prefix = ft_strdup("+");
-		else if (input.space == true && input.specifier == SP_DI)
+		else if (input.space == true)
 			output->prefix = ft_strdup(" ");
 	}
 }
