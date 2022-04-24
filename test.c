@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <stdint.h>
+#include "libft.h"
 
 #ifdef FT_PRINTF
 # include "ft_printf.h"
@@ -293,7 +294,6 @@ void	printf_test8()
 	printf("res=%d\n", res);
 	fflush(stdout);	
 }
-
 void	printf_test9()
 {
 	int	num;
@@ -367,7 +367,5 @@ int main (void)
 	printf_test6();
 	printf_test7();
 	printf_test8();
-	printf_test9();
-	printf_test10();
 	return (0);
 }	

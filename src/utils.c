@@ -71,13 +71,12 @@ void	str_toupper(char *str)
 	}
 }
 
-/* If the augument is null, return 0. */
-int	ft_strlen_s(const char *c)
+size_t  ft_strlen_s(const char *c)
 {
-	size_t	cnt;
-
+	size_t  cnt;
+   
 	if (!c)
-		return (0);
+	return (0);
 	cnt = 0;
 	while (*c++ != '\0')
 		cnt += 1;

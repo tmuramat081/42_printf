@@ -97,6 +97,6 @@ char	*ft_itoa_base(unsigned long long value, char *buff, int base);
 int		ft_putstr_cnt(char *str);
 int		ft_putchar_cnt(int c);
 void	str_toupper(char *str);
-int		ft_strlen_s(const char *s);
+size_t	ft_strlen_s(const char *s);
 
 #endif

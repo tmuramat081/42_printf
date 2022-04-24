@@ -52,7 +52,7 @@ int	convert_into_string(va_list *ap, t_finfo input)
 	else
 		output.body = ft_strdup(input_str);
 	if (input.precision != EMPTY
-		&& input.precision < ft_strlen_s(output.body))
+		&& input.precision < (int)ft_strlen_s(output.body))
 		output.body[input.precision] = '\0';
 	set_padding(&output, input);
 	return (setup_field(&output, input));

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuramat <mt15hydrangea@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 19:49:55 by tmuramat          #+#    #+#             */
-/*   Updated: 2022/02/25 23:26:35 by tmuramat         ###   ########.fr       */
+/*   Created: 2022/02/22 10:37:37 by tmuramat          #+#    #+#             */
+/*   Updated: 2022/02/22 10:37:55 by tmuramat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}	t_list;
+}			t_list;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -32,16 +32,16 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 void	ft_bzero(void *p, size_t n);
 size_t	ft_strlen(const char *c);
-size_t	ft_strlcpy(char *dst, const char *src, size_t n);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-char	*ft_strchr(const char *str, int c);
+size_t	ft_strlcpy(char *dest, const char *src, size_t n);
+size_t	ft_strlcat(char *dest, const char *src, size_t dstsize);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	*ft_memmove(void *dest, const void *src, size_t len);
-void	*ft_memchr(const void *buff, int ch, size_t n);
-int		ft_memcmp(const void *buff1, const void *buff2, size_t n);
-void	*ft_memset(void *p, int c, size_t len);
+void	*ft_memchr(void *buff, int ch, size_t n);
+int		ft_memcmp(void *buff1, void *buff2, size_t n);
+void	*ft_memset(void *p, int c, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_atoi(const char *str);
 char	*ft_strdup(const char *src);
@@ -66,5 +66,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+size_t	ft_strlen_s(const char *c);
 
 #endif
