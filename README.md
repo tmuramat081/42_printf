@@ -1,5 +1,5 @@
 # 42_printf
-Because ft_putnbr() and ft_putstr() aren’t enough...  
+*Because ft_putnbr() and ft_putstr() aren’t enough...*  
 
 <img src="image.jpg" width="800px">  
 
