@@ -1,6 +1,8 @@
 # 42_printf
 Because ft_putnbr() and ft_putstr() aren’t enough...  
 
+<img src="image.jpg" width="400px">  
+
 ## What is this ?
 This project is implementation of *printf* in C.  
 
