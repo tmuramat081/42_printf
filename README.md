@@ -12,7 +12,6 @@ This project is implementation of *printf* in C.
     make
 ```
 2. To use the library, please link *libftprintf.a* at compile.  
-e.g.:
 ```
 gcc main.c -L. -lftprintf -o main.exe
 ```
